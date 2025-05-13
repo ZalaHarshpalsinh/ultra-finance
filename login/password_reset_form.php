@@ -2,7 +2,7 @@
 require_once('../helpers/help.php');
 if ( !(isset($_SESSION['password_reset'])) )
 {
-    return header('location: /revolution/login/login.php');
+    return header('location: /ultra-finance/login/login.php');
 }
 ?>
 
@@ -43,8 +43,9 @@ if ( !(isset($_SESSION['password_reset'])) )
 </form>
 
 <script>
-    function refresh() {
-        var img = document.getElementById("captcha_img");
+    function refresh()
+    {
+        var img = document.getElementById( "captcha_img" );
         img.src = "captcha.php";
     }
 </script>

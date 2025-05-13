@@ -21,7 +21,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
     if ( $symbol == "" )
     {
         $_SESSION['quote_message'] = SYMBOL_REQUIRED;
-        return header("location: /revolution/features/quote.php");
+        return header("location: /ultra-finance/features/quote.php");
     }
 
     $shares = $_POST["shares"];
@@ -42,7 +42,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         if ( !$result )
         {
             $_SESSION['quote_message'] = str_replace("////", $symbol, SYMBOL_INVALID);
-            return header("location: /revolution/features/quote.php");
+            return header("location: /ultra-finance/features/quote.php");
         }
 
         $price = floatval($result["price"]);
@@ -104,7 +104,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
             //redirect
             $_SESSION['wallet_message'] = 'Successfully Bought!';
-            return header("location: /revolution/features/wallet.php");
+            return header("location: /ultra-finance/features/wallet.php");
         }
     }
     if ( isset($_POST['request_page']) && $_POST['request_page'] == 'buy' )
@@ -113,7 +113,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
     } else
     {
         $_SESSION['wallet_message'] = $error['shares'];
-        return header("location: /revolution/features/wallet.php");
+        return header("location: /ultra-finance/features/wallet.php");
     }
 } else
 {

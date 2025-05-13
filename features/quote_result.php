@@ -6,7 +6,7 @@ require_login();
 
 if ( (!isset($_GET['symbol']) || empty(trim($_GET['symbol']))) && (!isset($_POST['symbol']) || empty(trim($_POST['symbol']))) )
 {
-    return header('location: /revolution/features/quote.php');
+    return header('location: /ultra-finance/features/quote.php');
 }
 
 $symbol = $_GET['symbol'] ?? $_POST['symbol'];
@@ -15,7 +15,7 @@ $result = lookup($symbol);
 if ( !$result )
 {
     $_SESSION['quote_message'] = str_replace("////", $symbol, SYMBOL_INVALID);
-    return header("location: /revolution/features/quote.php");
+    return header("location: /ultra-finance/features/quote.php");
 }
 
 $price = $result["price"];

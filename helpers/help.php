@@ -5,7 +5,7 @@ function require_login()
     if ( !(isset($_SESSION["user_id"])) )
     {
         $_SESSION['login_message'] = 'Log in first!';
-        return header('location: /revolution/login/login.php');
+        return header('location: /ultra-finance/login/login.php');
     }
 }
 
@@ -13,7 +13,7 @@ function prevent_access_after_login()
 {
     if ( (isset($_SESSION["user_id"])) )
     {
-        return header('location: /revolution/features/wallet.php');
+        return header('location: /ultra-finance/features/wallet.php');
     }
 }
 

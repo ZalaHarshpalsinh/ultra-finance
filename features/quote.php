@@ -11,14 +11,12 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
     if ( $symbol == '' )
     {
         $error['symbol'] = SYMBOL_REQUIRED;
-    }
-    else
+    } else
     {
-        return header("location: /revolution/features/buy.php?symbol=$symbol");
+        return header("location: /ultra-finance/features/buy.php?symbol=$symbol");
     }
     require_once("quote_form.php");
-}
-else
+} else
 {
     require_once("quote_form.php");
 }

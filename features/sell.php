@@ -26,12 +26,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
     if ( !ctype_digit($shares) )
     {
         $error['sell'] = NO_OF_SHARES_INVALID;
-    }
-    else if ( intval($shares) === 0 )
+    } else if ( intval($shares) === 0 )
     {
         $error['sell'] = NO_OF_SHARES_INVALID;
-    }
-    else
+    } else
     {
         $shares = intval($shares);
 
@@ -44,8 +42,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         if ( mysqli_num_rows($result) == 0 )
         {
             $error['sell'] = NOT_ENOUGH_SHARES;
-        }
-        else
+        } else
         {
             $result = mysqli_fetch_array($result, MYSQLI_ASSOC);
             $owned = intval($result["shares"]);
@@ -55,8 +52,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
             if ( $owned < $shares )
             {
                 $error['sell'] = NOT_ENOUGH_SHARES;
-            }
-            else
+            } else
             {
                 //get price of stock
                 $result = lookup($symbol);
@@ -64,8 +60,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
                 if ( !$result )
                 {
                     $error['sell'] = str_replace("////", $symbol, SYMBOL_INVALID);
-                }
-                else
+                } else
                 {
                     $price = floatval($result["price"]);
 
@@ -103,8 +98,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
                         $stmt = mysqli_prepare($link, $sql);
                         mysqli_stmt_bind_param($stmt, "i", $rec_id);
                         mysqli_stmt_execute($stmt);
-                    }
-                    else
+                    } else
                     {
                         $owned = $owned - $shares;
                         $sql = "UPDATE account SET shares=? WHERE record_id=?";
@@ -115,15 +109,14 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
                     //redirect
                     $_SESSION['wallet_message'] = 'Successfully Sold!';
-                    return header("location: /revolution/features/wallet.php");
+                    return header("location: /ultra-finance/features/wallet.php");
                 }
             }
 
         }
     }
     require_once("wallet.php");
-}
-else
+} else
 {
     require_once("wallet.php");
 }

@@ -6,7 +6,7 @@ session_start();
 
 if ( !(isset($_SESSION['password_reset'])) )
 {
-    return header('location: /revolution/login/login.php');
+    return header('location: /ultra-finance/login/login.php');
 }
 
 $error = [];
@@ -38,8 +38,7 @@ const CAPTCHA_INVALID = 'Captcha code is wrong';
     if ( empty($confirmation) )
     {
         $error['confirmation'] = CONFIRMATION_REQUIRED;
-    }
-    else if ( $password != $confirmation )
+    } else if ( $password != $confirmation )
     {
         $error['confirmation'] = CONFIRMATION_INVALID;
     }
@@ -52,8 +51,7 @@ const CAPTCHA_INVALID = 'Captcha code is wrong';
     if ( empty($captcha) )
     {
         $error['captcha'] = CAPTCHA_REQUIRED;
-    }
-    else if ( $captcha != $_SESSION['captcha_code'] )
+    } else if ( $captcha != $_SESSION['captcha_code'] )
     {
         $error['captcha'] = CAPTCHA_INVALID;
     }
@@ -70,14 +68,12 @@ const CAPTCHA_INVALID = 'Captcha code is wrong';
         unset($_SESSION['password_reset']);
         unset($_SESSION['forgot_password_key']);
         unset($_SESSION['email']);
-        return header('location: /revolution/login/login.php');
-    }
-    else
+        return header('location: /ultra-finance/login/login.php');
+    } else
     {
         require('password_reset_form.php');
     }
-}
-else
+} else
 {
     if ( $_SESSION['forgot_password_key'] != (base64_decode(urldecode($_GET['code']))) )
     {
@@ -85,7 +81,7 @@ else
         unset($_SESSION['password_reset']);
         unset($_SESSION['forgot_password_key']);
         unset($_SESSION['email']);
-        return header('location: /revolution/login/login.php');
+        return header('location: /ultra-finance/login/login.php');
     }
     require_once('password_reset_form.php');
 }

@@ -5,7 +5,7 @@ require_once("../helpers/help.php");
 
 if ( $_SERVER['REQUEST_METHOD'] != "POST" )
 {
-    return header('location: /revolution/home.php');
+    return header('location: /ultra-finance/home.php');
 }
 
 const QUESTION_REQUIRED = '<h3>Please enter your question before submitting the form!</h3>';
@@ -35,7 +35,7 @@ if ( empty($question) )
 
 if ( isset($_SESSION['home_message']) )
 {
-    return header('location: /revolution/home.php');
+    return header('location: /ultra-finance/home.php');
 }
 
 $sql = "SELECT id FROM users WHERE email=?";
@@ -70,6 +70,6 @@ $body = "
 send_mail($to_email, $subject, $body);
 
 $_SESSION['home_message'] = "<h3>Your query has been succesfully reported.\n" . "Reply will be sent via email as soon as possible.</h3>";
-return header("location: /revolution/home.php");
+return header("location: /ultra-finance/home.php");
 
 ?>

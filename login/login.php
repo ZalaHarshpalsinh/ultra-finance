@@ -29,8 +29,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" )
     if ( empty($username) )
     {
         $error['username'] = NAME_REQUIRED;
-    }
-    else if ( !(filter_var($username, FILTER_VALIDATE_EMAIL)) )
+    } else if ( !(filter_var($username, FILTER_VALIDATE_EMAIL)) )
     {
         $is_input_email = false;
     }
@@ -40,7 +39,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" )
     {
         $_SESSION['password_reset'] = true;
         $_SESSION['email'] = $_POST['username'];
-        return header('location: /revolution/login/forgot_password.php');
+        return header('location: /ultra-finance/login/forgot_password.php');
     }
 
     //sanitise and validate password
@@ -57,8 +56,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" )
     if ( $is_input_email )
     {
         $sql = "SELECT * FROM users WHERE email=?";
-    }
-    else
+    } else
     {
         $sql = "SELECT * FROM users WHERE username=?";
     }
@@ -73,26 +71,23 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" )
     if ( mysqli_num_rows($result) != 1 )
     {
         $error['username'] = WRONG_CREDS;
-    }
-    else
+    } else
     {
         $result = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         if ( !(password_verify($password, $result["hash"])) )
         {
             $error['username'] = WRONG_CREDS;
-        }
-        else
+        } else
         {
             //
             session_start();
             $_SESSION["user_id"] = $result["id"];
-            return header("location: /revolution/features/wallet.php");
+            return header("location: /ultra-finance/features/wallet.php");
         }
     }
     require_once('login_form.php');
-}
-else
+} else
 {
     require_once('login_form.php');
 }
